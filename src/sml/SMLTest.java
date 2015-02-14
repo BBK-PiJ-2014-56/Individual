@@ -52,13 +52,13 @@ public class SMLTest {
 
     @Test
     public void DivideTest() {
-        Instruction ins0 = new DivideInstruction("div", 3, 0, 2);
+        Instruction ins0 = new DivInstruction("div", 3, 0, 2);
         ins0.execute(m);
         assertEquals(0, m.getRegisters().getRegister(3));
-        Instruction insdiv0 = new DivideInstruction("div", 4, 1, 0);
+        Instruction insdiv0 = new DivInstruction("div", 4, 1, 0);
         insdiv0.execute(m);
         assertEquals(0 , m.getRegisters().getRegister(4));
-        Instruction ins = new DivideInstruction("div", 3, 1, 2);
+        Instruction ins = new DivInstruction("div", 3, 1, 2);
         ins.execute(m);
         assertEquals(2, m.getRegisters().getRegister(3));
     }

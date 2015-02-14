@@ -87,6 +87,7 @@ public class Translator {
             return null;
 
         String ins = scan();
+        //ins =
 
 
 /*
@@ -143,7 +144,7 @@ public class Translator {
                 r = scanInt();
                 s1 = scanInt();
                 s2 = scanInt();
-                return new DivideInstruction(label, r, s1, s2);
+                return new DivInstruction(label, r, s1, s2);
             case "sub":
                 r = scanInt();
                 s1 = scanInt();
