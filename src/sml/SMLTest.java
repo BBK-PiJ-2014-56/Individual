@@ -32,20 +32,20 @@ public class SMLTest {
 
     @Test
     public void SubtractTest() {
-        Instruction ins0 = new SubtractInstruction("sub", 3, 1, 0);
+        Instruction ins0 = new SubInstruction("sub", 3, 1, 0);
         ins0.execute(m);
         assertEquals(6, m.getRegisters().getRegister(3));
-        Instruction ins = new SubtractInstruction("sub", 3, 1, 2);
+        Instruction ins = new SubInstruction("sub", 3, 1, 2);
         ins.execute(m);
         assertEquals(3, m.getRegisters().getRegister(3));
     }
 
     @Test
     public void MultiplyTest() {
-        Instruction ins0 = new MultiplyInstruction("mul", 3, 1, 0);
+        Instruction ins0 = new MulInstruction("mul", 3, 1, 0);
         ins0.execute(m);
         assertEquals(0, m.getRegisters().getRegister(3));
-        Instruction ins = new MultiplyInstruction("mul", 3, 1, 2);
+        Instruction ins = new MulInstruction("mul", 3, 1, 2);
         ins.execute(m);
         assertEquals(18, m.getRegisters().getRegister(3));
     }
@@ -65,7 +65,7 @@ public class SMLTest {
 
     @Test
     public void BNZTest() {
-        Instruction ins0 = new SubtractInstruction("sub", 3, 1, 2);
+        Instruction ins0 = new SubInstruction("sub", 3, 1, 2);
         Instruction ins1 = new BnzInstruction("bnz", 3, "ins0");
         ins1.execute(m);
         //assertEquals(0, m.getRegisters().getRegister(3));

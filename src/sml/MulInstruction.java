@@ -6,9 +6,9 @@ package sml;
  * @author someone
  */
 
-public class MultiplyInstruction extends Instruction {
+public class MulInstruction extends Instruction {
 
-    public MultiplyInstruction(String label, int result, int op1, int op2) {
+    public MulInstruction(String label, int result, int op1, int op2) {
         super(label, "mul", result, op1, op2);
     }
 /*
