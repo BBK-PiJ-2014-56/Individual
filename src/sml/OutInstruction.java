@@ -8,7 +8,7 @@ package sml;
 
 public class OutInstruction extends Instruction {
 
-    private int value;
+    //private int value;
     private int regNo;
 
     public OutInstruction(String label, String opcode) {
@@ -23,9 +23,8 @@ public class OutInstruction extends Instruction {
 
     @Override
     public void execute(Machine m) {
-        //value = m.getProg().get(regNo)
-        System.out.println(regNo);
-        System.out.println("Output is " + value);
+        //value = m.getRegisters().getRegister(regNo);
+        System.out.println("Output is " + m.getRegisters().getRegister(regNo));
     }
 
     @Override
