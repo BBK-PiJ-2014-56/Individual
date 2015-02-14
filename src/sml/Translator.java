@@ -2,6 +2,7 @@ package sml;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -64,6 +65,14 @@ public class Translator {
         } catch (IOException ioE) {
             System.out.println("File: IO error " + ioE.getMessage());
             return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
         return true;
     }
@@ -71,17 +80,49 @@ public class Translator {
     // line should consist of an MML instruction, with its label already
     // removed. Translate line into an instruction with label label
     // and return the instruction
-    public Instruction getInstruction(String label) {
-        int s1; // Possible operands of the instruction
-        int s2;
-        int r;
-        int x;
-        String str;
+    public Instruction getInstruction(String label) throws ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException {
+
 
         if (line.equals(""))
             return null;
 
         String ins = scan();
+
+
+/*
+        Class<?> insClass = Class.forName("sml."+ins+"Instruction");
+        Constructor[] insConstructors = insClass.getConstructors();
+        r = scanInt();
+        s1 = scanInt();
+
+        Object[] gugu = new Object[insConstructors[1].getParameterCount()];
+        gugu[0] = label;
+        gugu[1] = r;
+        gugu[2] = s1;
+        return (Instruction) insConstructors[1].newInstance(gugu);
+
+        Class<?> addClass = Class.forName("sml.AddInstruction");
+        Constructor[] addconstructors = addClass.getConstructors();
+
+
+        Class<?> mulClass = Class.forName("sml.MultiplyInstruction");
+        Constructor[] mulconstructors = mulClass.getConstructors();
+
+        Class<?> subClass = Class.forName("sml.SubtractInstruction");
+        Constructor[] subconstructors = subClass.getConstructors();
+
+        Class<?> bnzClass = Class.forName("sml.BnzInstruction");
+        Constructor[] bnzconstructors = bnzClass.getConstructors();
+
+        Class<?> divClass = Class.forName("sml.DivideInstruction");
+        Constructor[] divconstructors = divClass.getConstructors();
+*/
+        ///*
+        int s1; // Possible operands of the instruction
+        int s2;
+        int r;
+        int x;
+        String str;
 
         switch (ins) {
             case "add":
@@ -98,6 +139,11 @@ public class Translator {
                 s1 = scanInt();
                 s2 = scanInt();
                 return new MultiplyInstruction(label, r, s1, s2);
+            case "div":
+                r = scanInt();
+                s1 = scanInt();
+                s2 = scanInt();
+                return new DivideInstruction(label, r, s1, s2);
             case "sub":
                 r = scanInt();
                 s1 = scanInt();
@@ -111,7 +157,7 @@ public class Translator {
                 r = scanInt();  //r=21
                 return new OutInstruction(label, r);
         }
-
+        //*/
         // You will have to write code here for the other instructions.
 
         return null;

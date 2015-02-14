@@ -8,6 +8,10 @@ package sml;
 
 public class MultiplyInstruction extends Instruction {
 
+    public MultiplyInstruction(String label, int result, int op1, int op2) {
+        super(label, "mul", result, op1, op2);
+    }
+/*
     private int result;
     private int op1;
     private int op2;
@@ -22,7 +26,7 @@ public class MultiplyInstruction extends Instruction {
         this.op1 = op1;
         this.op2 = op2;
     }
-
+*/
     @Override
     public void execute(Machine m) {
         int value1 = m.getRegisters().getRegister(op1);

@@ -7,18 +7,9 @@ package sml;
  */
 
 public class BnzInstruction extends Instruction {
-    private int register;
-    private String goToLabel;
-
-    public BnzInstruction(String label, String opcode) {
-        super(label, opcode);
-    }
 
     public BnzInstruction(String label, int register, String goToLabel) {
-        super(label, "bnz");
-        this.register = register;
-        this.goToLabel = goToLabel;
-
+        super(label, "bnz", register, goToLabel);
     }
 
     @Override
@@ -33,11 +24,9 @@ public class BnzInstruction extends Instruction {
 
         //fix this bit
 
-        /*else {
-            System.out.println(regVal);
+        else if (regVal<0) {
             System.out.println("not a valid register number ");
-        }*/
-        //m.getRegisters().setRegister(register, value);
+        }
     }
 
     @Override
