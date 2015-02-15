@@ -68,6 +68,6 @@ public class SMLTest {
         Instruction ins0 = new SubInstruction("sub", 3, 1, 2);
         Instruction ins1 = new BnzInstruction("bnz", 3, "ins0");
         ins1.execute(m);
-        //assertEquals(0, m.getRegisters().getRegister(3));
+        assertEquals(0, m.getRegisters().getRegister(3));
     }
 }

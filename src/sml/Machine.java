@@ -35,7 +35,7 @@ public class Machine {
     public static void main(String[] args) {
 
         Machine m = new Machine();
-        Translator t = new Translator("divTest.sml");
+        Translator t = new Translator("code.sml");
         t.readAndTranslate(m.getLabels(), m.getProg());
 
         System.out.println("Here is the program; it has " + m.getProg().size() + " instructions.");
