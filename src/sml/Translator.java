@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 /*
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
+ *
+ * @author James Thornton
  */
 public class Translator {
 
@@ -90,44 +92,25 @@ public class Translator {
         ins = Character.toUpperCase(ins.charAt(0)) + ins.substring(1);
         Class<?> insClass = Class.forName("sml." + ins + "Instruction");
         Constructor[] insConstructors = insClass.getConstructors();
-        System.out.println(insConstructors.length);
-
         int mostDetailedConstructor = 0;
+        int constLength = 0;
         for (int i = 0; i < insConstructors.length; i++) {
-            //System.out.println(insConstructors[i]);
-            //System.out.println(i);
-            mostDetailedConstructor = i;
-               //System.out.println(mostDetailedConstructor);
+            if (insConstructors.length>constLength) {
+                mostDetailedConstructor = i;
+            }
         }
-        System.out.println(ins);
-        System.out.println("Constructor choice " + mostDetailedConstructor);
         Object[] parameters = new Object[insConstructors[mostDetailedConstructor].getParameterCount()];
-        //System.out.println("Constructor choice " + parameters[mostDetailedConstructor]);
         parameters[0] = label;
         if (ins.equals("Bnz")) {
             parameters[1] = scanInt();
             parameters[2] = scan();
-        } else if (ins.equals("Add")) {
-            System.out.println("no of expected add parameters "+parameters.length);
-            System.out.println(parameters[0]);
-            for (int i = 1; i < parameters.length; i++) {
-                parameters[i] = scanInt();
-                System.out.println(parameters[i]);
-            }
         } else {
-            System.out.println("no of expected parameters "+parameters.length);
             for (int i = 1; i < parameters.length; i++) {
                 parameters[i] = scanInt();
             }
         }
         return (Instruction) insConstructors[mostDetailedConstructor].newInstance(parameters);
-        /*} catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return null;
-        }*/
+
         /*
         int s1; // Possible operands of the instruction
         int s2;

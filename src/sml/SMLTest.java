@@ -6,7 +6,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by jimjohn_thornton on 07/02/15.
+ * This Test class unit tests add, sub, mul, div, and bnz
+ *
+ * @author James Thornton
  */
 public class SMLTest {
     private Machine m;
@@ -66,7 +68,14 @@ public class SMLTest {
     @Test
     public void BNZTest() {
         Instruction ins0 = new SubInstruction("sub", 3, 1, 2);
+        ins0.execute(m);
         Instruction ins1 = new BnzInstruction("bnz", 3, "ins0");
+        ins1.execute(m);
+        //assertEquals(0, m.getRegisters().getRegister(3));
+    }
+    @Test
+    public void OutTest() {
+        Instruction ins1 = new OutInstruction("out", 1);
         ins1.execute(m);
         assertEquals(0, m.getRegisters().getRegister(3));
     }

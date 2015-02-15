@@ -1,9 +1,9 @@
 package sml;
 
 /**
- * This class ....
+ * This class prints out the contents of a specified register
  *
- * @author someone
+ * @author James Thornton
  */
 
 public class OutInstruction extends Instruction {
@@ -12,20 +12,6 @@ public class OutInstruction extends Instruction {
     public OutInstruction(String label, int regNo) {
         super(label, "out", regNo);
     }
-
-    /*
-    private int regNo;
-
-    public OutInstruction(String label, String opcode) {
-        super(label, opcode);
-    }
-
-    public OutInstruction(String label, int regNo) {
-        super(label, "out");
-        this.regNo = regNo;
-
-    }
-    */
 
     @Override
     public void execute(Machine m) {

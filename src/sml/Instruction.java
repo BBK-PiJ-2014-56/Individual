@@ -3,7 +3,7 @@ package sml;
 /**
  * This class is the superclass of the classes for machine instructions
  *
- * @author someone
+ * @author James Thornton
  */
 
 public abstract class Instruction {
@@ -47,12 +47,7 @@ public abstract class Instruction {
         this.op1 = op1;
         this.op2 = op2;
     }
-    /*
-    public Instruction(String l, String op) {
-        this.label = l;
-        this.opcode = op;
-    }
-*/
+
 
     // = the representation "label: opcode" of this Instruction
 

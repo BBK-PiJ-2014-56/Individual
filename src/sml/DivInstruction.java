@@ -1,9 +1,10 @@
 package sml;
 
 /**
- * This class ....
+ * This class divides 2 instructions and places the result into a register and it prints out an error if you try
+ * to divide by zero
  *
- * @author someone
+ * @author James Thornton
  */
 
 public class DivInstruction extends Instruction {

@@ -1,9 +1,9 @@
 package sml;
 
 /**
- * This class ....
+ * This class sends the machine to a different instruction
  *
- * @author someone
+ * @author James Thornton
  */
 
 public class BnzInstruction extends Instruction {

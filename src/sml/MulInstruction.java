@@ -1,9 +1,9 @@
 package sml;
 
 /**
- * This class ....
+ * This class multiplies 2 instructions and places the result into a specified register
  *
- * @author someone
+ * @author James Thornton
  */
 
 public class MulInstruction extends Instruction {
@@ -11,22 +11,7 @@ public class MulInstruction extends Instruction {
     public MulInstruction(String label, int result, int op1, int op2) {
         super(label, "mul", result, op1, op2);
     }
-/*
-    private int result;
-    private int op1;
-    private int op2;
 
-    public MultiplyInstruction(String label, String op) {
-        super(label, op);
-    }
-
-    public MultiplyInstruction(String label, int result, int op1, int op2) {
-        this(label, "mul");
-        this.result = result;
-        this.op1 = op1;
-        this.op2 = op2;
-    }
-*/
     @Override
     public void execute(Machine m) {
         int value1 = m.getRegisters().getRegister(op1);

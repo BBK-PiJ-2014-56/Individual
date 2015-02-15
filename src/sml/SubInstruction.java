@@ -1,9 +1,9 @@
 package sml;
 
 /**
- * This class ....
+ * This class subtracts 2 instructions and places the result into a specified register
  *
- * @author someone
+ * @author James Thornton
  */
 
 public class SubInstruction extends Instruction {

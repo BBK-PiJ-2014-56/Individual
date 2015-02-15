@@ -71,24 +71,4 @@ public class Machine {
             ins.execute(this);
         }
     }
-
-    public ArrayList<Instruction> getProg() {
-        return prog;
-    }
-    public Registers getRegisters() {
-        return registers;
-    }
-    public Labels getLabels() {
-        return labels;
-    }
-    public int setPc(int i) {
-        return pc = i;
-    }
-    public int getPc() {
-        return pc;
-    }
-    public Registers setRegisters(Registers r) {
-            registers = r;
-        return registers;
-    }
 }

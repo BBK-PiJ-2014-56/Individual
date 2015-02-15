@@ -1,32 +1,27 @@
 package sml;
 
 /**
- * This class ....
+ * This class adds 2 instructions and places the result into a register
  *
- * @author someone
+ * @author James Thornton
  */
 
 public class AddInstruction extends Instruction {
-///*
+
     private int result;
     private int op1;
     private int op2;
-//
+
     public AddInstruction(String label, String op) {
         super(label, op);
     }
 
     public AddInstruction(String label, int result, int op1, int op2) {
         this(label, "add");
-        System.out.println("1p");
         this.result = result;
-        System.out.println("2p");
         this.op1 = op1;
-        System.out.println("3p");
         this.op2 = op2;
-        System.out.println("4p");
     }
-//*/
 /*
     public AddInstruction(String label, int result, int op1, int op2) {
         super(label, "add", result, op1, op2);

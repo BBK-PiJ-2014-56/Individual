@@ -3,11 +3,11 @@ package sml;
 import lombok.Data;
 
 /**
- * This class ....
+ * This class sets up the registers with an initial value of 0
  *
  * An instance contains 32 registers and methods to access and change them
  *
- * @author someone
+ * @author James Thornton
  */
 
 @Data
