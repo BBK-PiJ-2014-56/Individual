@@ -67,16 +67,19 @@ public class SMLTest {
 
     @Test
     public void BNZTest() {
-        Instruction ins0 = new SubInstruction("sub", 3, 1, 2);
-        ins0.execute(m);
-        Instruction ins1 = new BnzInstruction("bnz", 3, "ins0");
-        ins1.execute(m);
-        //assertEquals(0, m.getRegisters().getRegister(3));
+        Translator t = new Translator("bnzTest.sml");
+        t.readAndTranslate(m.getLabels(), m.getProg());
+        m.execute();
+        assertEquals(720, m.getRegisters().getRegister(21));
+        Translator t2 = new Translator("bnzTest2.sml");
+        t2.readAndTranslate(m.getLabels(), m.getProg());
+        m.execute();
+        assertEquals(0, m.getRegisters().getRegister(21));
     }
     @Test
     public void OutTest() {
         Instruction ins1 = new OutInstruction("out", 1);
-        ins1.execute(m);
-        assertEquals(0, m.getRegisters().getRegister(3));
+        assertEquals("out: output value from register 1" , ins1.toString());
+
     }
 }
