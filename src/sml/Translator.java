@@ -83,65 +83,37 @@ public class Translator {
     // and return the instruction
     public Instruction getInstruction(String label) throws ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException {
 
-
         if (line.equals(""))
             return null;
 
         String ins = scan();
-        System.out.println(ins);
         ins = Character.toUpperCase(ins.charAt(0)) + ins.substring(1);
-        System.out.println(ins);
+        try {
+            Class<?> insClass = Class.forName("sml." + ins + "Instruction");
+            Constructor[] insConstructors = insClass.getConstructors();
 
+            Object[] parameters = new Object[insConstructors[0].getParameterCount()];
+            parameters[0] = label;
 
-        Class<?> insClass = Class.forName("sml."+ins+"Instruction");
-        Constructor[] insConstructors = insClass.getConstructors();
+            if (ins.equals("Bnz")) {
 
-        //ArrayList<String> operandList = new ArrayList<>();
-
-        //int r = scanInt();
-        //int s1 = scanInt();
-
-        Object[] parameters = new Object[insConstructors[0].getParameterCount()];
-        parameters[0] = label;
-        //System.out.println(parameters.length);
-        ///*
-        if (ins.equals("Bnz")) {
-            System.out.println("right loop");
-            parameters[1] = scanInt();
-            parameters[2] = scan();
-        } else {
-            for (int i = 1; i < parameters.length; i++) {
-                //if (insClass.getTypeName())
-                System.out.println(i);
-                //System.out.println(insClass.getSimpleName());
-                parameters[i] = scanInt();
+                parameters[1] = scanInt();
+                parameters[2] = scan();
+            } else {
+                for (int i = 1; i < parameters.length; i++) {
+                    parameters[i] = scanInt();
+                }
             }
+
+            return (Instruction) insConstructors[0].newInstance(parameters);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return null;
         }
-        //*/
         /*
-        parameters[1] = r;
-        parameters[2] = s1;
-        */
-        return (Instruction) insConstructors[0].newInstance(parameters);
-
-/*
-        Class<?> addClass = Class.forName("sml.AddInstruction");
-        Constructor[] addconstructors = addClass.getConstructors();
-
-
-        Class<?> mulClass = Class.forName("sml.MultiplyInstruction");
-        Constructor[] mulconstructors = mulClass.getConstructors();
-
-        Class<?> subClass = Class.forName("sml.SubtractInstruction");
-        Constructor[] subconstructors = subClass.getConstructors();
-
-        Class<?> bnzClass = Class.forName("sml.BnzInstruction");
-        Constructor[] bnzconstructors = bnzClass.getConstructors();
-
-        Class<?> divClass = Class.forName("sml.DivideInstruction");
-        Constructor[] divconstructors = divClass.getConstructors();
-
-        ///*
         int s1; // Possible operands of the instruction
         int s2;
         int r;
