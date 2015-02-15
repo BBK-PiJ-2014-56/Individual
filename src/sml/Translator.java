@@ -2,6 +2,7 @@ package sml;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -87,21 +88,43 @@ public class Translator {
             return null;
 
         String ins = scan();
-        //ins =
+        System.out.println(ins);
+        ins = Character.toUpperCase(ins.charAt(0)) + ins.substring(1);
+        System.out.println(ins);
 
 
-/*
         Class<?> insClass = Class.forName("sml."+ins+"Instruction");
         Constructor[] insConstructors = insClass.getConstructors();
-        r = scanInt();
-        s1 = scanInt();
 
-        Object[] gugu = new Object[insConstructors[1].getParameterCount()];
-        gugu[0] = label;
-        gugu[1] = r;
-        gugu[2] = s1;
-        return (Instruction) insConstructors[1].newInstance(gugu);
+        //ArrayList<String> operandList = new ArrayList<>();
 
+        //int r = scanInt();
+        //int s1 = scanInt();
+
+        Object[] parameters = new Object[insConstructors[0].getParameterCount()];
+        parameters[0] = label;
+        //System.out.println(parameters.length);
+        ///*
+        if (ins.equals("Bnz")) {
+            System.out.println("right loop");
+            parameters[1] = scanInt();
+            parameters[2] = scan();
+        } else {
+            for (int i = 1; i < parameters.length; i++) {
+                //if (insClass.getTypeName())
+                System.out.println(i);
+                //System.out.println(insClass.getSimpleName());
+                parameters[i] = scanInt();
+            }
+        }
+        //*/
+        /*
+        parameters[1] = r;
+        parameters[2] = s1;
+        */
+        return (Instruction) insConstructors[0].newInstance(parameters);
+
+/*
         Class<?> addClass = Class.forName("sml.AddInstruction");
         Constructor[] addconstructors = addClass.getConstructors();
 
@@ -117,7 +140,7 @@ public class Translator {
 
         Class<?> divClass = Class.forName("sml.DivideInstruction");
         Constructor[] divconstructors = divClass.getConstructors();
-*/
+
         ///*
         int s1; // Possible operands of the instruction
         int s2;
@@ -158,10 +181,10 @@ public class Translator {
                 r = scanInt();  //r=21
                 return new OutInstruction(label, r);
         }
-        //*/
+        */
         // You will have to write code here for the other instructions.
 
-        return null;
+        //return null;
     }
 
     /*
